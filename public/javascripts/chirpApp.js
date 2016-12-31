@@ -1,4 +1,4 @@
-var app = angular.module('chirpApp', ['ngRoute', 'ngResource']).run(function($rootScope) {
+var app = angular.module('chirpApp', ['ngRoute', 'ngResource', 'ngMaterial']).run(function($rootScope, $http) {
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
 	
@@ -9,7 +9,7 @@ var app = angular.module('chirpApp', ['ngRoute', 'ngResource']).run(function($ro
 	};
 });
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, $mdThemingProvider){
 	$routeProvider
 		//the timeline display
 		.when('/', {
@@ -26,6 +26,7 @@ app.config(function($routeProvider){
 			templateUrl: 'register.html',
 			controller: 'authController'
 		});
+	$mdThemingProvider.theme('default').dark();
 });
 
 app.factory('postService', function($resource){

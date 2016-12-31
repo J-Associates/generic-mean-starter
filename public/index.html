@@ -1,28 +1,37 @@
 <html>
-	<head>
-		<title>Chirp</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-resource.js"></script>
-		<script src="javascripts/chirpApp.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<link rel="stylesheet" href="stylesheets/style.css">
-	</head>
-	<body ng-app="chirpApp">
-		<div id='main' class="container">
-			<nav class="navbar-fluid navbar-default navbar-fixed-top">
-				<div class="container">
-					<a class="navbar-brand" href="#"> Chirp! </a>
-					<p class="navbar-text"> Learn the MEAN stack by building this tiny app</p>
-					<p class="navbar-right navbar-text" ng-hide="authenticated"><a href="#/login">Login</a> or <a href="#/signup">Register</a></p>
-					<p class="navbar-right navbar-text" ng-show="authenticated"><a href="#" ng-click="signout()">Logout</a></p>
-					<p class="navbar-right navbar-text" ng-show="authenticated">Signed in as {{current_user}}</p>
-				</div>
-			</nav>
-			<div class="col-md-offset-2 col-md-8">
-				<div ng-view>
-				</div>
+<head>
+<title>Chirp</title>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.min.js"></script>
+<script src="javascripts/chirpApp.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+<link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body ng-app="chirpApp">
+	<div id='main' class="container">
+		<nav class="navbar-fluid navbar-default navbar-fixed-top">
+			<div class="container">
+				<a class="navbar-brand" href="#"> Chirp! </a>
+				<p class="navbar-text">Learn the MEAN stack by building this tiny app</p>
+				<p class="navbar-right navbar-text" ng-hide="authenticated">
+					<a href="#/login">Login</a> or <a href="#/register">Register</a>
+				</p>
+				<p class="navbar-right navbar-text" ng-show="authenticated">
+					<a href="#" ng-click="signout()">Logout</a>
+				</p>
+				<p class="navbar-right navbar-text" ng-show="authenticated">Signed in as {{current_user}}</p>
 			</div>
+			<md-progress-linear md-mode="indeterminate" value="30"></md-progress-linear>
+		</nav>
+		<div class="col-md-offset-2 col-md-8">
+			<div ng-view></div>
 		</div>
-	</body>
+	</div>
+</body>
 </html>
