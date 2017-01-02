@@ -1,4 +1,4 @@
-var app = angular.module('chirpApp', [ 'ngRoute', 'ngResource', 'ngMaterial' ]).run(function($rootScope, $http) {
+var app = angular.module('chirpApp', [ 'ui.router', 'ngResource', 'ngMaterial' ]).run(function($rootScope, $http) {
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
 
@@ -53,7 +53,7 @@ app.controller('mainController', function(postService, $scope, $rootScope) {
 	};
 });
 
-app.controller('authController', function($scope, $http, $rootScope, $location) {
+app.controller('authController', function($scope, $http, $rootScope, $state) {
 	$scope.user = {
 		username : '',
 		password : ''
@@ -61,14 +61,24 @@ app.controller('authController', function($scope, $http, $rootScope, $location) 
 	$scope.error_message = '';
 
 	$scope.login = function() {
-		$http.post('/auth/login', $scope.user).success(function(data) {
+		$http({
+			method : "POST",
+			url : '/auth/login',
+			headers : {
+				"Content-Type" : "application/json"
+			},
+			data : $scope.user
+		}).then(function(res) {
+			var data = res.data;
 			if (data.state == 'success') {
 				$rootScope.authenticated = true;
 				$rootScope.current_user = data.user.username;
-				$location.path('/');
+				$state.transitionTo('main');
 			} else {
 				$scope.error_message = data.message;
 			}
+		}, function(errorRes) {
+			console.log("Error");
 		});
 	};
 
